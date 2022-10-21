@@ -1,6 +1,6 @@
 {
   "name": "quack-parse-version-actions",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "GitHub Actions for Duckie QuackQuack's publishing",
   "main": "index.js",
   "scripts": {

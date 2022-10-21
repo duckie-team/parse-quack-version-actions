@@ -11,8 +11,8 @@ try {
     if (version === null) {
       core.setFailed('No version found')
     } else {
-      const versions = version.split('\n').map(line => line.split('=')[1])
-      if (versions[3] !== undefined) versions.pop()
+      let versions = version.split('\n').map(line => line.split('=')[1])
+      versions.length = 3 // fix `x.y.z` format
       core.setOutput('version', versions.join('.'))
     }
   })
