@@ -1,13 +1,19 @@
-name: 'Hello World'
-description: 'Greet someone and record the time'
+name: 'quack-parse-version-actions'
+author: 'jisungbin'
+description: '꽥꽥 배포용으로 사용되는 꽥꽥이 버전 조회 액션'
+branding:
+  icon: 'sliders'
+  color: 'orange'
+
 inputs:
-  who-to-greet:  # id of input
-    description: 'Who to greet'
+  path:
+    description: '버전 파일 경로'
     required: true
-    default: 'World'
+
 outputs:
-  time: # id of output
-    description: 'The time we greeted you'
+  version:
+    description: '꽥꽥이 버전'
+
 runs:
   using: 'node16'
   main: 'index.js'

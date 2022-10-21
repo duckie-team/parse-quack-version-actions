@@ -1,15 +1,21 @@
-const core = require('@actions/core');
-const github = require('@actions/github');
+const core = require('@actions/core')
+const fs = require('fs')
 
 try {
-  // `who-to-greet` input defined in action metadata file
-  const nameToGreet = core.getInput('who-to-greet');
-  console.log(`Hello ${nameToGreet}!`);
-  const time = (new Date()).toTimeString();
-  core.setOutput("time", time);
-  // Get the JSON webhook payload for the event that triggered the workflow
-  const payload = JSON.stringify(github.context.payload, undefined, 2)
-  console.log(`The event payload: ${payload}`);
+  const path = core.getInput('path')
+  fs.readFile(path, 'utf8', (error, version) => {
+    if (error) {
+      core.setFailed(error.message)
+      return
+    }
+    if (version === null) {
+      core.setFailed('No version found')
+    } else {
+      const versions = version.split('\n').map(line => line.split('=')[1])
+      if (versions[3] !== undefined) versions.pop()
+      core.setOutput('version', versions.join('.'))
+    }
+  })
 } catch (error) {
-  core.setFailed(error.message);
+  core.setFailed(error.message)
 }
