@@ -18,7 +18,9 @@ outputs:
 ## Usage
 
 ```yaml
-- name: Label filtering
+- uses: actions/checkout@v3 # require!
+
+- name: Label filtering # require!
   id: label
   uses: duckie-team/quack-label-filter-actions@1.0.4
   with:
