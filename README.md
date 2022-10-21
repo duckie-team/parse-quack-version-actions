@@ -25,6 +25,7 @@ outputs:
     labels: "${{ toJson(github.event.pull_request.labels.*.name) }}"
 
 - name: Quack version parsing
+  id: version
   uses: duckie-team/quack-parse-version-actions@1.0.1
   with:
     path: ${{ steps.label.outputs.version_path }}
